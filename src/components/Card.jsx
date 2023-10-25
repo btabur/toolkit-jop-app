@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaLocationDot} from "react-icons/fa"
+import {FaLocationDot} from "react-icons/fa6"
 import {PiSuitcaseSimpleBold} from "react-icons/pi"
 import {BsFillCalendar2DateFill} from "react-icons/bs"
 const Card = () => {
@@ -9,7 +9,7 @@ const Card = () => {
      <div className='letter'> 
         <p>U</p>
       </div>
-      <div className='indo'>
+      <div className='info'>
         <p>Frontend</p>
         <p>Udemig</p>
       </div>
@@ -27,8 +27,8 @@ const Card = () => {
             <BsFillCalendar2DateFill/>
             <p>10/03/2023</p>
         </div>
-        <div className='field'>
-            <p>Mülakat</p>
+        <div className='status'>
+            <span>Mülakat</span>
         </div>  
      </div>
     </div>
