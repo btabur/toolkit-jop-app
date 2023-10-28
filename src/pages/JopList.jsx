@@ -2,26 +2,39 @@ import React from 'react'
 import Card from '../components/Card'
 import { useEffect } from "react";
 import axios  from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { setJop,setError } from '../redux/jopSlice';
+import Loading from '../components/Loading';
+import RefresButton from '../components/RefresButton'
 
 const JopList = () => {
-  const dispatch = UseDispatch()
+  const dispatch = useDispatch()
+  const state = useSelector((store)=> store)
+
+  const getData = ()=> {
+    axios.get('http://localhost:4000/jobs')
+    .then((res) =>dispatch(setJop(res.data)) )
+    .catch(()=> dispatch(setError()))
+  }
 
   useEffect(()=> {
-
-    axios.get('http://localhost:4000/jobs')
-    .then((res) =>console.log() )
-    .catch()
+    getData();
+   
   },[])
   return (
     <div className='list-page'>
       <h3 className='jop-count'>
-        Bulunan 11 iş arasından 9 tane görüntüleniyor
+        Bulunan {state.jops.length} iş arasından {state.jops.length} tane görüntüleniyor
       </h3>
       <section className='jop-list'>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+          {!state.initialized && <Loading/>}
+          {state.initialized && !state.isError ?  (
+            state.jops.map((jop)=> <Card jop= {jop}/>)
+          ):
+          <p className='error-msg'>
+            <span>Üzgünüz Bir hata oldu </span>
+            <RefresButton handleClick={()=>getData()}/>  
+            </p>}
       </section>
     </div>
   )

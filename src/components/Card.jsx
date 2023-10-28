@@ -2,33 +2,48 @@ import React from 'react'
 import {FaLocationDot} from "react-icons/fa6"
 import {PiSuitcaseSimpleBold} from "react-icons/pi"
 import {BsFillCalendar2DateFill} from "react-icons/bs"
-const Card = () => {
+const Card = ({jop}) => {
+
+
+  const getClassName = ()=> {
+    switch(jop.status) {
+      case "Devam Ediyor" : 
+      return "pending";
+      case "Reddedildi" : 
+      return "rejected";
+      case "Mülakat" : 
+      return "interview";
+      default :
+      return "default"
+    }
+
+  }
   return (
     <div className='card'>
      <div className="card-header">
      <div className='letter'> 
-        <p>U</p>
+        <p>{jop.company[0]}</p>
       </div>
       <div className='info'>
-        <p>Frontend</p>
-        <p>Udemig</p>
+        <p>{jop.position}</p>
+        <p>{jop.company}</p>
       </div>
      </div>
      <div className="card-body">
         <div className='field'>
            <FaLocationDot/>
-            <p>İzmir/Bayraklı</p>
+            <p>{jop.location}</p>
         </div>
         <div className='field'>
            <PiSuitcaseSimpleBold/>
-            <p>Tam Zamanlı</p>
+            <p>{jop.type}</p>
         </div>
         <div className='field'>
             <BsFillCalendar2DateFill/>
-            <p>10/03/2023</p>
+            <p>{jop.date}</p>
         </div>
         <div className='status'>
-            <span>Mülakat</span>
+            <span className={getClassName()}>{jop.status}</span>
         </div>  
      </div>
     </div>
