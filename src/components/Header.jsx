@@ -10,7 +10,7 @@ const Header = () => {
     </div>
     <nav>
         <NavLink to={'/'}> İş Listesi</NavLink>
-        <NavLink to={'/add-post'}> İş Ekle</NavLink>
+        <NavLink to={'/add-jop'}> İş Ekle</NavLink>
     </nav>
    
 </header>
