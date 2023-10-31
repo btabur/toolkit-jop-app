@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setJop,setError } from '../redux/jopSlice';
 import Loading from '../components/Loading';
 import RefresButton from '../components/RefresButton'
+import Filter from '../components/Filter';
 
 const JopList = () => {
   const dispatch = useDispatch()
@@ -23,8 +24,12 @@ const JopList = () => {
   },[])
   return (
     <div className='list-page'>
+      {state.isShowFilter &&
+       <Filter/>
+      }
+     
       <h3 className='jop-count'>
-        Bulunan {state.jops.length} iş arasından {state.jops.length} tane görüntüleniyor
+        Bulunan {state.mainJop.length} iş arasından {state.jops.length} tane görüntüleniyor
       </h3>
       <section className='jop-list'>
           {!state.initialized && <Loading/>}

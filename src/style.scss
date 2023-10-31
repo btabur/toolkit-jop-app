@@ -66,6 +66,22 @@ header {
             box-shadow: 0 0 10px white;
             
         }
+        .btn-filtre {
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-right: 20px;
+            border: 0px;
+            background-color: #3e1045;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover {
+                background-color: white;
+                color: #3e1045;
+            }
+        }
     }
 }
 
@@ -183,4 +199,34 @@ place-items: center;
     }
    
         
+}
+
+.filter-sec { 
+    // Miras almak için
+    @extend .add-sec;
+    margin: 20px auto 50px;
+    
+   div:last-child {
+    align-items: unset;
+   }
+   &-header {
+   position: relative;
+
+   }
+   .filter-close {
+         position: absolute;
+         right: 0;
+        background-color: transparent;
+        width: 30px;
+        height: 30px;
+        font-weight: bold;
+        border-radius: 50%;
+        transition: all 0.3s;
+        color: white;
+        border: 1px solid white;
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+   }
 }
