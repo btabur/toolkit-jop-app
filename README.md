@@ -77,3 +77,7 @@ import store from './redux/store.js'
 - react-redux
 - @reduxjs/toolkit
 - uuid
+
+### used hook
+
+- useRef: js deki getElementById nin işlevini görür

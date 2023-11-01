@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { sortOptions,typeOptions,statusOptions } from '../constants/constant'
 import { useDispatch } from 'react-redux'
 import { clearFilters, filterBySearch, filterByStatus, filterByType, showFilter, sortJops } from '../redux/jopSlice'
 
 const Filter = () => {
-const dispatch = useDispatch()
+const dispatch = useDispatch();
+const searchRef = useRef()
+const statusRef = useRef()
+const typeRef = useRef()
+const sortRef = useRef()
 
     const handleChange = (event)=> {
         dispatch(filterBySearch(event.target.value))
@@ -12,6 +16,10 @@ const dispatch = useDispatch()
     }
     const handleReset=()=> {
         dispatch(clearFilters());
+        searchRef.current.value=""
+        statusRef.current.value="Seçiniz"
+        typeRef.current.value="Seçiniz"
+        sortRef.current.value="Seçiniz"
     }
     const handleClose = ()=> {
       dispatch(showFilter())
@@ -26,14 +34,14 @@ const dispatch = useDispatch()
 
     <form >
       <div>
-        <label>Şirket</label>
-        <input onChange={handleChange} type="search" />
+        <label>Ara</label>
+        <input ref={searchRef} onChange={handleChange} type="search" />
       </div>
      
       {/* Select */}
       <div>
         <label >Durum</label>
-        <select
+        <select ref={statusRef}
          onChange={(e)=>dispatch(filterByStatus(e.target.value))}>
         <option selected disabled>Seçiniz</option>
           {statusOptions.map((item)=> <option key={item}>{item}</option>)}
@@ -41,7 +49,7 @@ const dispatch = useDispatch()
       </div>
       <div>
         <label >Tür</label>
-        <select
+        <select ref={typeRef}
         onChange={(e)=>dispatch(filterByType(e.target.value))} >
         <option selected disabled>Seçiniz</option>
           {typeOptions.map((item)=> <option key={item}>{item}</option>)}
@@ -49,7 +57,7 @@ const dispatch = useDispatch()
       </div>
       <div>
         <label>Sırala</label>
-        <select
+        <select ref={sortRef}
            onChange={(e)=>dispatch(sortJops(e.target.value))} >
           <option selected disabled>Seçiniz</option>
           {sortOptions.map((item)=> <option key={item}>{item}</option>)}
